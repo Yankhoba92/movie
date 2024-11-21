@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 
 const SearchBar = ({ onSearch }) => {
-  const [searchT, setSearchT] = useState("");
+  // Mes états
+  const [searchText, setSearchText] = useState("");
   const [selectGenre, setSelectGenre] = useState("");
   const [resultCount, setResultCount] = useState(6);
+  const [genres, setGenres] = useState([]);
 
+  // fonction pour déclancher la recherche en passant les critéres selectionnés 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchT.trim()) {
-      onSearch(searchT, selectGenre, resultCount);
+    if (searchText.trim()) {
+      onSearch(searchText, selectGenre, resultCount);
     }
   };
-  // Fetch genres from the API
-  const [genres, setGenres] = useState([]);
+  // Fetch  des genres disponibles sur l'API
   useEffect(() => {
     const fetchGenres = async () => {
       try {
@@ -34,15 +36,16 @@ const SearchBar = ({ onSearch }) => {
             <input
               className="form-control me-2"
               type="search"
-              value={searchT}
-              onChange={(e) => setSearchT(e.target.value)}
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}// Met à jour le texte de recherche
               placeholder="Search"
               aria-label="Search"
             />
+            {/* Selecteur pour choisir le genre */}
             <select
               className="form-select me-2"
               value={selectGenre}
-              onChange={(e) => setSelectGenre(e.target.value)}
+              onChange={(e) => setSelectGenre(e.target.value)} // Met à jour le genre
             >
               <option value="">Sélectionner un genre</option>
               {genres.map((genre) => (
@@ -51,15 +54,16 @@ const SearchBar = ({ onSearch }) => {
                 </option>
               ))}
             </select>
+            {/* Champs pour définir le nombre de résultat à afficher */}
             <input
               type="number"
               className="form-control me-2"
               value={resultCount}
-              onChange={(e) => setResultCount(e.target.value)}
+              onChange={(e) => setResultCount(e.target.value)}  // Met à jour le nombre de film à afficher
               min="1"
               placeholder="Résultats"
             />
-            
+            {/* Bouton pour lancer la recherche */}
             <button type="submit" className="btn btn-outline-success">
               Search
             </button>
