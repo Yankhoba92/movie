@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const SearchBar = ({ onSearch }) => {
   const [searchT, setSearchT] = useState("");
   const [selectGenre, setSelectGenre] = useState("");
-  const [resultCount, setResultCount] = useState(9);
+  const [resultCount, setResultCount] = useState(6);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div>
-      <nav className="navbar bg-body-tertiary">
+      <nav className="navbar ">
         <div className="container-fluid">
           <form className="d-flex" role="search" onSubmit={handleSearch}>
             <input

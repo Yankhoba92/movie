@@ -35,7 +35,7 @@ const SearchResult = () => {
   return (
     <div>
       <div className="container mt-5">
-        <h1 className="text-center mb-4">Recherche de Films</h1>
+        <h1 className="text-center mb-4 ">🎥 Recherche de Films</h1>
         <SearchBar onSearch={handleSearch} />
         <div className="text-end mb-3">
           <button
@@ -49,22 +49,23 @@ const SearchResult = () => {
           {movies.length > 0 ? (
             movies.map((movie) => (
               <div key={movie.id} className="col-md-4 mb-4">
-                <div className="card">
+                <div className="card border-light shadow-sm">
                   <img
-                    src={movie.image_url}
+
                     className="card-img-top"
-                    alt={movie.title}
+                    src={movie.image_url || "https://placehold.co/300x450/000000/FFF?text=Non+disponible"} // Image par défaut
+            alt={movie.title || "Image non disponible"}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{movie.title}</h5>
-                    <p className="card-text">Année : {movie.year}</p>
-                    <p className="card-text">Score IMDb : {movie.imdb_score}</p>
+                    <h3 className="card-title">{movie.title}</h3>
+                    <p className="card-text"><span>Année :</span> {movie.year}</p>
+                    <p className="card-text"><span>Score IMDb :</span> {movie.imdb_score}</p>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p className="text-muted">Aucun film trouvé.</p>
+            <p className="text-center">Aucun film trouvé.</p>
           )}
         </div>
       </div>
