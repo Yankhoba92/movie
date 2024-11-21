@@ -59,6 +59,7 @@ const SearchBar = ({ onSearch }) => {
               min="1"
               placeholder="Résultats"
             />
+            
             <button type="submit" className="btn btn-outline-success">
               Search
             </button>
